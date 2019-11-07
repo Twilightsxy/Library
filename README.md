@@ -3,4 +3,5 @@
 1. JDK 1.8
 2. PostgreSQL 11
 3. Tomcat 9
-## Spring Boot架构
+## Spring MVC架构
+
