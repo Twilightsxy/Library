@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        
+       classpath:/org/springframework/beans/factory/xml/spring-beans-2.0.xsd"  
+             default-lazy-init="true">
+
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"           
+        destroy-method="close">          
+    <property name="driverClass" value="org.postgresql.Driver"/>          
+    <property name="jdbcUrl" value="jdbc:postgresql://47.102.86.235:5432/ex5"/> 
+    <property name="user" value="postgres"/>          
+    <property name="password" value="ozj0407"/>          
+</bean>
+</beans>
