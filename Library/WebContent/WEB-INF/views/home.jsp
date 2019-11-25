@@ -9,5 +9,6 @@
 </head>
 <body>
 	<p>欢迎</p>
+	<p>截止时间是周五</p>
 </body>
 </html>
