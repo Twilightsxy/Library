@@ -31,7 +31,7 @@
 				<ul class="menu">
 					<li><a href="<c:url value="/retrive" />">找回密码 | </a></li>
 					<li><a href="<c:url value="/home" />">图书馆主页 | </a></li>
-					<li class="active"><a href="<c:url value="/login" />"> 登录</a></li>
+					<li class="active"><a href="<c:url value="/login" />"> 登录</a></li>342
 				</ul>
 			</div>
 		</div>
