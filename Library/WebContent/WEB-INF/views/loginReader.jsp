@@ -30,8 +30,12 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<ul class="menu">
+<<<<<<< HEAD:Library/WebContent/WEB-INF/views/loginReader.jsp
 					<li><a
 						href="<c:url value="/retrive" />">找回密码 | </a></li>
+=======
+					<li><a href="<c:url value="/retrieve" />">找回密码 | </a></li>
+>>>>>>> d40330d3b1ff4d9c3469ecaff56d12cce924f2f3:Library/WebContent/WEB-INF/views/login.jsp
 					<li><a href="<c:url value="/home" />">图书馆主页 | </a></li>
 					<li class="active"><a href="<c:url value="/login" />"> 登录</a></li>
 				</ul>

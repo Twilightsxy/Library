@@ -28,9 +28,6 @@ public class HomeController {
 
 	@Autowired // 自动注入资源
 	private BookRepository test;
-
-	@Autowired // 自动注入资源
-	private ReaderRepository readerRepository;
 	
 	@Autowired // 自动注入资源
 	private LibrarianRepository librarianRepository;
@@ -56,8 +53,9 @@ public class HomeController {
 
 		List<Book> lists = test.getAllBooks("title", "红");
 		for (Book book : lists) {
-			System.out.println(book.getBookNo());
+
 		}
+<<<<<<< HEAD
 		return "loginReader";
 	}
 
@@ -93,6 +91,23 @@ public class HomeController {
 			return "loginReader";
 		}
 	}
+=======
+		return "login";
+	}
+
+	/**
+	 * 进入用户登录界面
+	 * 
+	 * @return login.jsp
+	 */
+	@RequestMapping(value = "/login", method = GET)
+	public String showReaderLogin() {
+
+		return "login";
+	}
+
+
+>>>>>>> d40330d3b1ff4d9c3469ecaff56d12cce924f2f3
 
 	/**
 	 * 管理员登录
