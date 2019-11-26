@@ -72,12 +72,6 @@ public class LoginController {
 		 * 
 		 */
 		session.removeAttribute("librarian");
-		Reader reader = readerRepository.findByPassword(userName, password);
-		if (reader != null) {
-			session.setAttribute("reader", reader);
-			return "redirect:/index";
-		} else {
-			return "login";
-		}
+
 	}
 }
