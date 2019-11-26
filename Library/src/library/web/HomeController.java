@@ -61,47 +61,6 @@ public class HomeController {
 		return "login";
 	}
 
-	/**
-	 * 进入用户登录界面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/login", method = GET)
-	public String showReaderLogin() {
-
-		return "login";
-	}
-
-	/**
-	 * 处理用户登录请求
-	 * 
-	 * @param userName
-	 * @param password
-	 * @param session
-	 * @return
-	 */
-	@RequestMapping(value = "/login", method = POST)
-	public String readerLogin(@RequestParam(value = "userName", defaultValue = "") String userName,
-			@RequestParam(value = "password", defaultValue = "") String password, HttpSession session) {
-		/*
-		 * @RequestParam注解：
-		 * 
-		 * value：参数名字，即入参的请求参数名字，如userName表示请求的参数区中的名字为userName的参数的值将传入；
-		 * 
-		 * required：是否必须，默认是true，表示请求中一定要有相应的参数，否则将报404错误码；
-		 * 
-		 * defaultValue：默认值，表示如果请求中没有同名参数时的默认值
-		 * 
-		 */
-		session.removeAttribute("librarian");
-		Reader reader = readerRepository.findByPassword(userName, password);
-		if (reader != null) {
-			session.setAttribute("reader", reader);
-			return "redirect:/index";
-		} else {
-			return "login";
-		}
-	}
 
 	/**
 	 * 管理员登录
