@@ -58,20 +58,11 @@ public class HomeController {
 		for (Book book : lists) {
 			System.out.println(book.getBookNo());
 		}
-		return "login";
+		return "loginReader";
 	}
 
-	/**
-	 * 进入用户登录界面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/login", method = GET)
-	public String showReaderLogin() {
-
-		return "login";
-	}
-
+	
+	
 	/**
 	 * 处理用户登录请求
 	 * 
@@ -99,7 +90,7 @@ public class HomeController {
 			session.setAttribute("reader", reader);
 			return "redirect:/index";
 		} else {
-			return "login";
+			return "loginReader";
 		}
 	}
 

@@ -5,8 +5,8 @@
 <html class="no-js">
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="images/图标.png" />
-<title>Library|Login</title>
+<link rel="icon" type="image/png" href="images/校徽.jpg" />
+<title>图书管理员 | 登录</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 
@@ -27,7 +27,7 @@
 <body class="style-3">
 	<div style="background-color: #AD0205; height: 100px; ">
 		<div style="padding: 10px 0;">
-			<h2 align="center" style="color: white;">Administrator</h2>
+			<h2 align="center" style="color: white;">图书管理员</h2>
 		</div>
     </div>
 	
@@ -41,65 +41,62 @@
 				<form class="fh5co-form animate-box"
 					data-animate-effect="fadeInRight" method="post"
 					onsubmit="return check()" action="LoginServlet1">
-					<h2>Login</h2>
+					<h2>管理员登录</h2>
 
 					<c:choose>
 						<c:when test="${!allTrue}">
 							<div class="form-group">
-								<label for="username" class="sr-only">Name</label> <input
+								<label for="username" class="sr-only">用户名</label> <input
 									type="text" class="form-control " id="username" name="username"
 									required
 									oninvalid="setCustomValidity('Please fill in this field!')"
-									oninput="setCustomValidity('')" placeholder="User Name">
+									oninput="setCustomValidity('')" placeholder="用户名">
 							</div>
 							<div class="form-group">
-								<label for="password" class="sr-only">Password</label> <input
+								<label for="password" class="sr-only">密码</label> <input
 									type="password" class="form-control" id="password" required
 									oninvalid="setCustomValidity('Please fill in this field!')"
 									oninput="setCustomValidity('')" name="password"
-									placeholder="Password" autocomplete="off">
+									placeholder="密码" autocomplete="off">
 							</div>
 						</c:when>
 						<c:when test="${rNoError}">
 							<div class="form-group">
-								<label for="username" class="sr-only">Name</label> <input
+								<label for="username" class="sr-only">用户名</label> <input
 									type="text" class="form-control red " id="username"
 									name="username" required
 									oninvalid="setCustomValidity('Please fill in this field!')"
-									oninput="setCustomValidity('')" placeholder="User Name Error!">
+									oninput="setCustomValidity('')" placeholder="用户名错误！">
 							</div>
 							<div class="form-group">
-								<label for="password" class="sr-only">Password</label> <input
+								<label for="password" class="sr-only">密码</label> <input
 									type="password" class="form-control red " id="password"
-									required="required" name="password" placeholder="Password" required
+									required="required" name="password" placeholder="密码" required
 									oninvalid="setCustomValidity('Please fill in this field!')"
 									oninput="setCustomValidity('')" autocomplete="off">
 							</div>
 						</c:when>
 						<c:when test="${rPassError}">
 							<div class="form-group">
-								<label for="username" class="sr-only">Name</label> <input
+								<label for="username" class="sr-only">用户名</label> <input
 									type="text" class="form-control red " id="username"
 									name="username" required
 									oninvalid="setCustomValidity('Please fill in this field!')"
-									oninput="setCustomValidity('')" placeholder="User Name">
+									oninput="setCustomValidity('')" placeholder="用户名">
 							</div>
 							<div class="form-group">
-								<label for="password" class="sr-only">Password</label> <input
+								<label for="password" class="sr-only">密码</label> <input
 									type="password" class="form-control red " id="password"
 									required
 									oninvalid="setCustomValidity('Please fill in this field!')"
 									oninput="setCustomValidity('')" name="password"
-									placeholder="Password Error!" autocomplete="off">
+									placeholder="密码错误！" autocomplete="off">
 							</div>
 						</c:when>
 					</c:choose>
+					
 					<div class="form-group">
-						<label for="remember"><input type="checkbox" id="remember">
-							Save the password</label>
-					</div>
-					<div class="form-group">
-						<input id="submit" type="submit" value="Login"
+						<input id="submit" type="submit" value="登录"
 							class="btn btn-primary" onclick="setMyText()">
 					</div>
 				</form>
@@ -107,12 +104,16 @@
 
 			</div>
 		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 		<div class="row" style="padding-top: 60px; clear: both;">
 			<div class="col-md-12 text-center">
 				<p>
-					<small>&copy; Technical support <a href="#" target="_blank">Library
-							support team</a>
-					</small>
+					&copy; 技术支持 <a href="#" target="_blank"> 图书馆小分队 </a>
+					
 				</p>
 			</div>
 		</div>

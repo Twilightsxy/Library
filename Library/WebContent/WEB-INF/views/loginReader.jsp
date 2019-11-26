@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-
+<link rel="icon" type="image/png" href="images/校徽.jpg" />
 <title>图书馆 | 登录</title>
 <link rel="icon" href="images/favicon.ico"
 	type="image/x-icon" />
