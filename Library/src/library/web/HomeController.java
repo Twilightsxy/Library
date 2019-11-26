@@ -56,7 +56,7 @@ public class HomeController {
 
 		List<Book> lists = test.getAllBooks("title", "红");
 		for (Book book : lists) {
-			System.out.println(book.getBookNo());
+
 		}
 		return "login";
 	}
