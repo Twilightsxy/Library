@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="images/校徽.jpg" />
-<title>图书馆 | 登录</title>
 
+<title>图书馆 | 登录</title>
+<link rel="icon" href="images/favicon.ico"
+	type="image/x-icon" />
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
 	rel='stylesheet' type='text/css'>
@@ -29,7 +30,8 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<ul class="menu">
-					<li><a href="<c:url value="/retrive" />">找回密码 | </a></li>
+					<li><a
+						href="<c:url value="/retrive" />">找回密码 | </a></li>
 					<li><a href="<c:url value="/home" />">图书馆主页 | </a></li>
 					<li class="active"><a href="<c:url value="/login" />"> 登录</a></li>
 				</ul>
@@ -68,14 +70,12 @@
 									type="text" class="form-control red " id="username"
 									name="username" required
 									oninvalid="setCustomValidity('Please fill in this field!')"
-									oninput="setCustomValidity('')"
-									placeholder="用户名错误">
+									oninput="setCustomValidity('')" placeholder="用户名错误">
 							</div>
 							<div class="form-group">
 								<label for="password" class="sr-only">Password</label> <input
 									type="password" class="form-control" id="password"
-									required="required" name="password" placeholder="密码"
-									required
+									required="required" name="password" placeholder="密码" required
 									oninvalid="setCustomValidity('Please fill in this field!')"
 									oninput="setCustomValidity('')" autocomplete="off">
 							</div>
@@ -121,12 +121,14 @@
 
 			</div>
 		</div>
-		<br><br><br>
+		<br>
+		<br>
+		<br>
 		<div class="row" style="padding-top: 60px; clear: both;">
 			<div class="col-md-12 text-center">
 				<p>
 					&copy; 技术支持 <a href="#" target="_blank"> 图书馆小分队 </a>
-					
+
 				</p>
 			</div>
 		</div>
