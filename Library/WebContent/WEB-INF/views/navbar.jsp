@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Navigation</title>
+<link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
 	<div>
@@ -105,7 +106,7 @@
 			</div>
 		</div>
 </body>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
 <script>
 	function tc() {
 		$("#hasLogout").modal("show");

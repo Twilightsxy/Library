@@ -5,28 +5,26 @@
 <head>
 <meta charset="utf-8">
 <title>Post</title>
-<link href="resources/css/post.css" rel="stylesheet" type="text/css">
-<link href="resources/css/swiper.min.css" rel="stylesheet"
-	type="text/css">
-<style>
-.swiper-slide {
-	height: 300px;
-	width: 500px;
-	text-align: center;
-	color: #eee;
-	background: rgba(165, 163, 163, 0.32);
-}
-</style>
+<link href="css/post.css" rel="stylesheet" type="text/css" >
+<link href="css/swiper.min.css" rel="stylesheet" type="text/css" >
+  <style>
+    .swiper-slide {
+            height: 300px;
+            width:500px;
+            text-align: center;
+            color:#eee;
+            background: rgba(165, 163, 163, 0.32);
+        }
+  </style>
 </head>
 <body>
 	<div id="post" class="review">
-		<div id="lun" class="container"
-			style="height: 500px; width: 100%; background: url(images/se2.jpg);">
+		<div id="lun"class="container"style="height:500px;width:100%;background: url(images/se2.jpg);">
 			<h3 class="title-w3">Posts</h3>
-
+			
 		</div>
-		<div id="postList" class="postList" style="display: none;">
-			<table>
+		<div id="postList" class="postList" style="display:none;">
+			<table >
 				<tr>
 					<th class="postTitle">PostTitle</th>
 					<th class="postContent">PostContent</th>
@@ -37,37 +35,37 @@
 			<div id="postContent"></div>
 			<div id="showPost"></div>
 			<!--Page码块-->
-			<footer class="page" id="postPageFooter">
+			<footer class="page" id="postPageFooter" >
 				<ul class="pagecontent">
 					<li><select id="postPageSelect" name="postPageSelect"
 						onchange="turnToPostOne(this.options[this.options.selectedIndex].value)">
 					</select> Page</li>
-					<li class="pagegray" id="totalPageLi"></li>
-					<li><i class="pageglyphicon glyphicon-menu-left"
-						id="postPageUp" onclick=postPageDown()> </i></li>
-					<li><i class="pageglyphicon glyphicon-menu-right"
-						id="postPageDown" onclick=postPageUp()> </i></li>
+					<li class="pagegray" id="totalPageLi" ></li>
+					<li><i class="pageglyphicon glyphicon-menu-left" id="postPageUp"
+						 onclick=postPageDown()> </i></li>
+					<li><i class="pageglyphicon glyphicon-menu-right" id="postPageDown"
+						 onclick=postPageUp()> </i></li>
 				</ul>
 			</footer>
 		</div>
 	</div>
 </body>
-<script src="resources/js/jquery-3.4.1.min.js"></script>
-<script src="resources/js/swiper.min.js"></script>
-<script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+	<script>
 		window.onload = function init(){
 			var pageNum = 1;
 			turnToPost(pageNum);
 		}
 	</script>
-<script>
+	<script>
 		function turnToPostOne(pageNum){
 			
 			turnToPost(pageNum);
 		}
 	</script>
-<script src="resources/js/personInformation.js"></script>
-<script>
+	<script src="js/personInformation.js"></script>
+	<script>
 		function turnToThisPost(postno){
 			$.ajax({
 				type:"GET",
@@ -106,7 +104,7 @@
 			});
 		}
 	</script>
-<script>
+	<script>
 	function turnToPost(pageNum){
 		//alert("aaa");
 		$.ajax({
@@ -202,7 +200,7 @@
 				});
 }
 	</script>
-<script>
+	<script>
 	function turnToPostTwo(pageNum){
 		//alert("aaa");
 		$.ajax({
@@ -246,7 +244,7 @@
 			else document.getElementById("postPageUp").disabled = true;
 		}
 	</script>
-<script>
+	<script>
 		function postPageDown(){
 			var options = $("#postPageSelect option:selected");
 			var page = options.val();
@@ -259,7 +257,7 @@
 			else document.getElementById("postPageDown").disabled = true;
 		}
 	</script>
-<script type="text/javascript">
+		<script type="text/javascript">
 		function showMore(){
 			$("#postList").toggle();
 		}

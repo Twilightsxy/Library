@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8">
 <title>Contact Us</title>
-<link href="resources/css/style.css" rel="stylesheet" type="text/css" media="all">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"
 	media="all">
-<link href="resources/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"
 	media="all">
 </head>
 <body>
@@ -76,11 +76,11 @@
 	<!-- //footer -->
 	
 		<!-- js -->
-	<script type="text/javascript" src="resources/js/jquery-3.1.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
 	<!-- start-smoth-scrolling -->
-	<script type="text/javascript" src="resources/js/move-top.js"></script>
-	<script type="text/javascript" src="resources/js/easing.js"></script>
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event) {

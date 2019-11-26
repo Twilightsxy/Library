@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>FindBook</title>
-<link rel="stylesheet" href="resources/css/page.css">
-<link rel="stylesheet" href="resources/css/bookSearch.css">
+<link rel="stylesheet" href="css/page.css">
+<link rel="stylesheet" href="css/bookSearch.css">
 
 </head>
 <body>
@@ -79,9 +79,9 @@
 	</form>
 
 </body>
+<script src="js/jquery-3.4.1.min.js"></script>
 <script>
 	function initbookSearch(){
-		//alert("aaa");
 		$.ajax({
 					type : "GET",
 					async : false,

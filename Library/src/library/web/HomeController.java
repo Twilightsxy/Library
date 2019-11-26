@@ -58,7 +58,7 @@ public class HomeController {
 		for (Book book : lists) {
 			System.out.println(book.getBookNo());
 		}
-		return "home";
+		return "login";
 	}
 
 	/**
