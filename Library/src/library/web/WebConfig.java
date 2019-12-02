@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+
 /**
  * webMVC配置
  * 
@@ -75,6 +76,16 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		super.addResourceHandlers(registry);
 	}
 
-
+	/**
+	 * 定义拦截器
+	 */
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		
+		registry.addInterceptor(new UserInterceptor())
+				.addPathPatterns(new String[] { "/adminHome", "/adminHome/**","/account","/account/**","/check","/check/**","/admin","/admin/**","/reader","/reader/**"})//添加拦截
+				.excludePathPatterns("/loginLibrarian");// excludePathPatterns 排除拦截
+		super.addInterceptors(registry);
+	}
 
 }

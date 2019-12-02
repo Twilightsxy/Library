@@ -22,4 +22,18 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<jsp-config>
+  	  <taglib>
+    	<taglib-uri>LibraryFirstTag</taglib-uri>
+        <taglib-location>/WEB-INF/tld/LibraryTag.tld</taglib-location>
+      </taglib>
+       <taglib>
+    	<taglib-uri>CountTag</taglib-uri>
+        <taglib-location>/WEB-INF/tld/CountTag.tld</taglib-location>
+      </taglib>
+    </jsp-config>
+    
+	
+    
 </web-app>

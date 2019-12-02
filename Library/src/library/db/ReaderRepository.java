@@ -100,4 +100,8 @@ public interface ReaderRepository {
 	 * @return 
 	 */
 	Reader findByPassword(String userName, String password);
+
+	boolean getrNo(String userName);
+
+	boolean get(String username, String password);
 }

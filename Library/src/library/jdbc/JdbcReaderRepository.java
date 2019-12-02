@@ -46,7 +46,7 @@ public class JdbcReaderRepository implements ReaderRepository {
 	@Override
 	public void updateReader(Reader reader, String oldReaderNo) {
 		jdbc.update(UPDATE_READER, reader.getReaderNo(), reader.getReaderName(), reader.getReaderPassword(),
-				reader.getEmail(), reader.getFine());
+				reader.getEmail(), Integer.valueOf(reader.getFine()), oldReaderNo);
 	}
 
 	@Override
@@ -67,6 +67,7 @@ public class JdbcReaderRepository implements ReaderRepository {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public int getReaderCount() {
 		return jdbc.queryForInt("select count(readerno) from reader");
@@ -84,7 +85,7 @@ public class JdbcReaderRepository implements ReaderRepository {
 		try {
 			reader = jdbc.queryForObject(SELECT_READER + " where readerno = ? ", new ReaderRowMapper(), readerNo);
 		} catch (DataAccessException e) {
-			
+
 		}
 		return reader;
 	}
@@ -108,9 +109,47 @@ public class JdbcReaderRepository implements ReaderRepository {
 			reader = jdbc.queryForObject(SELECT_READER + " where readername = ? and readerpassword = ?",
 					new ReaderRowMapper(), userName, password);
 		} catch (Exception e) {
-			
+
 		}
 		return reader;
+	}
+
+	@Override
+	public boolean getrNo(String userName) {
+		boolean test = true;
+		String rno = "";
+		if (userName.length() != 11 || userName.equals("")) {
+			return !test;
+		} else {
+			try {
+				rno = jdbc.queryForObject(SELECT_READER + " where readerno = ? ", new ReaderRowMapper(), userName)
+						.getReaderNo();
+			} catch (DataAccessException e) {
+
+			}
+		}
+		if (rno.equals("")) {
+			test = false;
+		}
+		return test;
+	}
+
+	@Override
+	public boolean get(String rNo, String rPassword) {
+		Reader reader = new Reader();
+		boolean test = false;
+		if (rNo.length() != 11 || rNo.equals("")) {
+			return test;
+		} else {
+			try {
+				reader = jdbc.queryForObject(SELECT_READER + " where readerno = ? and readerpassword = ?",
+						new ReaderRowMapper(), rNo, rPassword);
+			} catch (DataAccessException e) {
+
+			}
+			test = rPassword.equals(reader.getReaderPassword());
+		}
+		return test;
 	}
 
 	private static class ReaderRowMapper implements RowMapper<Reader> {
@@ -122,12 +161,12 @@ public class JdbcReaderRepository implements ReaderRepository {
 
 	private static final String SELECT_READER = "select * from reader";
 
-	private static final String INSERT_READER = "insert into reader (readerno, readname, readerpassword, emial, readerfine) values(?,?,?,?)";
+	private static final String INSERT_READER = "insert into reader (readerno, readername, readerpassword, email, readerfine) values(?,?,?,?,?)";
 
 	private static final String DELETE_READER = "delete from reader where readerno = ?";
 
-	private static final String UPDATE_READER = "update reader set readerno = ? ,readername = ? , readerpassword = ?,emial = ?,readerfine = ? where readerno = ?";
+	private static final String UPDATE_READER = "update reader set readerno = ? ,readername = ? , readerpassword = ?,email = ?,readerfine = ? where readerno = ?";
 
-	private static final String SELECT_PAGE_READERS = SELECT_READER + "order by readerno desc limit ? offset  ?";
+	private static final String SELECT_PAGE_READERS = SELECT_READER + " order by readerno desc limit ? offset  ?";
 
 }

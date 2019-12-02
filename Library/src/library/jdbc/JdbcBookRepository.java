@@ -225,6 +225,36 @@ public class JdbcBookRepository implements BookRepository {
 	}
 
 	@Override
+	public PaginationSupport<Book> findbytitle(int pageNo, int pageSize , String category ,String content) {
+		String bookContent = "\'%" + content + "%\'";
+		category = "\'%" + category + "%\'";
+		int totalCount = getCountOfUnlend();
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Book>(new ArrayList<Book>(0), 0);
+
+		List<Book> items = jdbc.query("select * from book where category like " + category + " and title like " + bookContent
+				+ " order by bookNo asc limit ? offset  ?", new BookRowMapper(), pageSize, startIndex);
+		PaginationSupport<Book> rs = new PaginationSupport<Book>(items, totalCount, pageSize, startIndex);
+		return rs;
+	}
+	
+	@Override
+	public PaginationSupport<Book> findbyauthor(int pageNo, int pageSize , String category ,String content) {
+		String bookContent = "\'%" + content + "%\'";
+		category = "\'%" + category + "%\'";
+		int totalCount = getCountOfUnlend();
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Book>(new ArrayList<Book>(0), 0);
+
+		List<Book> items = jdbc.query("select * from book where category like " + category + " and author like " + bookContent
+				+ " order by bookNo asc limit ? offset  ?", new BookRowMapper(), pageSize, startIndex);
+		PaginationSupport<Book> rs = new PaginationSupport<Book>(items, totalCount, pageSize, startIndex);
+		return rs;
+	}
+	
+	@Override
 	public PaginationSupport<Book> findPage(int pageNo, int pageSize) {
 		int totalCount = getCount();
 		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
@@ -232,6 +262,18 @@ public class JdbcBookRepository implements BookRepository {
 			return new PaginationSupport<Book>(new ArrayList<Book>(0), 0);
 
 		List<Book> items = jdbc.query(SELECT_PAGE_BOOKS, new BookRowMapper(), pageSize, startIndex);
+		PaginationSupport<Book> rs = new PaginationSupport<Book>(items, totalCount, pageSize, startIndex);
+		return rs;
+	}
+	
+	@Override
+	public PaginationSupport<Book> findPageLend(int pageNo, int pageSize) {
+		int totalCount = getCount();
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Book>(new ArrayList<Book>(0), 0);
+
+		List<Book> items = jdbc.query(SELECT_PAGE_BOOKS_LEND, new BookRowMapper(), pageSize, startIndex);
 		PaginationSupport<Book> rs = new PaginationSupport<Book>(items, totalCount, pageSize, startIndex);
 		return rs;
 	}
@@ -264,7 +306,9 @@ public class JdbcBookRepository implements BookRepository {
 
 	private static final String INSERT_BOOK = "insert into book(bookno,title,author,price,time,publish,brief,isbn,category,location,status) values(?,?,?,?,?,?,?,?,?,?,?)";
 
-	private static final String SELECT_PAGE_BOOKS = SELECT_BOOK + "order by bookno desc limit ? offset  ?";
+	private static final String SELECT_PAGE_BOOKS = SELECT_BOOK + "order by bookno asc limit ? offset  ?";
+	
+	private static final String SELECT_PAGE_BOOKS_LEND = SELECT_BOOK + " where status = '2' order by bookno asc limit ? offset  ?";
 
 	private static final String SELECT_PAGE_UNLENDBOOKS = SELECT_BOOK
 			+ " where status = 0 order by bookno desc limit ? offset  ?";

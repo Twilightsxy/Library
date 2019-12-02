@@ -82,7 +82,7 @@ public class JdbcBorrowRepository implements BorrowRepository {
 	@Override
 	public List<Borrow> getlenBorrows(String readerNo){
 		return jdbc.query("select bookno, title, author, readerno, borrowtime, isreturned, shouldreturntime,"
-				+ "returntime,fine from Borrow where isreturned is false and readerno="+"\'" + readerNo + "\'", new BorrowRowMapper());
+				+ "returntime,fine from Borrow where isreturned is false and readerno="+"\'" + readerNo + "\' order by bookno asc", new BorrowRowMapper());
 	}
 	
 	
@@ -108,7 +108,7 @@ public class JdbcBorrowRepository implements BorrowRepository {
 	@Override
 	public List<Borrow> getFinBorrows(String readerNo){
 		return jdbc.query("select bookno, title, author, readerno, borrowtime, isreturned, shouldreturntime,"
-				+ "returntime,fine from Borrow where isreturned is true and readerno="+"\'" + readerNo + "\'", new BorrowRowMapper());
+				+ "returntime,fine from Borrow where isreturned is true and readerno="+"\'" + readerNo + "\' order by bookno asc", new BorrowRowMapper());
 	}
 	
 	

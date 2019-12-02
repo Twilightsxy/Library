@@ -6,22 +6,30 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="images/校徽.jpg" />
+<link rel="icon" type="image/png" href="/Library/resources/images/校徽.jpg" />
 <title>图书馆 | 登录</title>
-<link rel="icon" href="images/favicon.ico"
-	type="image/x-icon" />
+
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
 	rel='stylesheet' type='text/css'>
 
 <!--此处使用的是bootstrap1.min.css，（注意一）并不是bootstrap.min.css-->
-<link rel="stylesheet" href="css/bootstrap1.min.css">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/login_style.css">
+<link rel="stylesheet" href="/Library/resources/css/bootstrap1.min.css">
+<link rel="stylesheet" href="/Library/resources/css/animate.css">
+<link rel="stylesheet" href="/Library/resources/css/login_style.css">
 
 
 <!-- js文件 -->
-<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="/Library/resources/js/modernizr-2.6.2.min.js"></script>
+<script src="/Library/resources/js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="/Library/resources/js/bootstrap.min.js"></script>
+	<!-- Placeholder -->
+	<script src="/Library/resources/js/jquery.placeholder.min.js"></script>
+	<!-- Waypoints -->
+	<script src="/Library/resources/js/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="/Library/resources/js/main.js"></script>
 
 </head>
 <body class="style-3">
@@ -30,14 +38,9 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<ul class="menu">
-<<<<<<< HEAD:Library/WebContent/WEB-INF/views/loginReader.jsp
-					<li><a
-						href="<c:url value="/retrive" />">找回密码 | </a></li>
-=======
-					<li><a href="<c:url value="/retrieve" />">找回密码 | </a></li>
->>>>>>> d40330d3b1ff4d9c3469ecaff56d12cce924f2f3:Library/WebContent/WEB-INF/views/login.jsp
-					<li><a href="<c:url value="/home" />">图书馆主页 | </a></li>
-					<li class="active"><a href="<c:url value="/login" />"> 登录</a></li>
+					<li><a href="/Library/retrieve">找回密码 | </a></li>
+					<li><a href="/Library/home">图书馆主页 | </a></li>
+					<li class="active">登录</li>
 				</ul>
 			</div>
 		</div>
@@ -46,7 +49,7 @@
 
 
 				<!-- 登录表单 -->
-				<sf:form action="/login/loginReader" method="post"
+				<sf:form action="${pageContext.request.contextPath}/login/reader" method="post"
 					class="fh5co-form animate-box" data-animate-effect="fadeInRight"
 					onsubmit="return check()">
 					<h2>登录</h2>
@@ -113,7 +116,7 @@
 							新用户？ <span> 请找管理员进行注册~ </span>
 						</p>
 						<p>
-							<a href="<c:url value="/retrieve" />"><span>忘记密码？</span></a>
+							<a href="/Library/retrieve"><span>忘记密码？</span></a>
 						</p>
 					</div>
 					<div class="form-group">
@@ -125,9 +128,7 @@
 
 			</div>
 		</div>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br>
 		<div class="row" style="padding-top: 60px; clear: both;">
 			<div class="col-md-12 text-center">
 				<p>
@@ -139,14 +140,6 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Placeholder -->
-	<script src="js/jquery.placeholder.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
-	<script src="js/main.js"></script>
+	
 </body>
 </html>

@@ -134,6 +134,16 @@ public interface BookRepository {
 	PaginationSupport<Book> findPage(int pageNo, int pageSize);
 
 	/**
+	 * 依据页码和指定页面大小，返回所有的借出书籍记录列表
+	 * 
+	 * @param pageNo   起始位置
+	 * @param pageSize 每页数量
+	 * @return 分页对象
+	 */
+	PaginationSupport<Book> findPageLend(int pageNo, int pageSize);
+	
+	
+	/**
 	 * 依据页码和指定页面大小，返回未借出的书籍记录列表
 	 * 
 	 * @param pageNo   起始位置
@@ -141,5 +151,10 @@ public interface BookRepository {
 	 * @return 分页对象
 	 */
 	PaginationSupport<Book> findUnlendPage(int pageNo, int pageSize);
+	
+	
+	PaginationSupport<Book> findbytitle(int pageNo, int pageSize, String category, String content);
+
+	PaginationSupport<Book> findbyauthor(int pageNo, int pageSize, String category, String content);
 
 }

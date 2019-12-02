@@ -83,4 +83,8 @@ public interface LibrarianRepository {
 	 */
 	Librarian findByPassword(String userName, String password);
 
+	boolean getrNo(String username);
+
+	boolean get(String username, String password);
+
 }

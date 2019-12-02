@@ -5,53 +5,48 @@
 <html lang="ch">
 <head>
 <meta charset="UTF-8" />
-<title>Navigation</title>
-<link rel="stylesheet" href="css/navbar.css">
+<title>导航栏</title>
+
 </head>
 <body>
 	<div>
 		<!--头部-->
 		<div class="head">
 			<div class="logo">
-				<img src="images/logo.jpg" alt="library_logo">
+				<img src="${pageContext.request.contextPath}/resources/images/校徽.jpg" width="60" height="60">
 			</div>
 			<div class="head-nav">
 				<div class="head-nav-con clearFloat">
 					<ul>
 						<c:choose>
-							<c:when test="${sessionScope.userName == null}">
-								<li style="width:70px;margin-right: 30px;margin-left: 50px"><a href="index.jsp#home"
-									class="hvr-underline-from-center ahome">Home</a></li>
-								<li style="width:60px;margin-right: 30px;margin-left: 30px"><a href="index.jsp#post"
-									class="hvr-underline-from-center apost">Post</a></li>
-								<li style="width:110px;margin-right: 30px;margin-left: 30px"><a href="index.jsp#find"
-									class="hvr-underline-from-center aservices">Find Book</a></li>
-								<li style="width:110px;margin-right: 30px;margin-left: 30px"> <a href="index.jsp#about"
-									class="hvr-underline-from-center aabout">About Us</a></li>
-								<li style="width:110px;margin-right: 30px;margin-left: 30px"><a href="index.jsp#team"
-									class="hvr-underline-from-center ateam">Our Team</a></li>
-								<li style="width:120px;margin-right: 30px;margin-left: 30px"><a href="contact.jsp" class="hvr-underline-from-center"
-									target="_blank">Contact US</a></li>
-								<li style="width:70px;margin-right: 30px;margin-left: 30px"><a href="login.jsp"
-									class="hvr-underline-from-center " >Login</a></li>
+							<c:when test="${sessionScope.username == null}">
+							
+							<li style="width:60px;margin-right: 30px;margin-left: 30px"></li>
+								<li style="width:60px;margin-right: 30px;margin-left: 30px"><a href="${pageContext.request.contextPath}/home"
+									class="hvr-underline-from-center apost">主页</a></li>
+								<li style="width:110px;margin-right: 30px;margin-left: 30px"><a href="${pageContext.request.contextPath}/404"
+									class="hvr-underline-from-center ateam">开发团队</a></li>
+								<li style="width:70px;margin-right: 30px;margin-left: 30px"><a href="${pageContext.request.contextPath}/login/reader"
+									class="hvr-underline-from-center " >登录</a></li>
 							</c:when>
-							<c:when test="${sessionScope.userName != null}">
-								<li style="width:70px"><a href="index.jsp#home"
-									class="hvr-underline-from-center ahome">Home</a></li>
-								<li style="width:60px"><a href="index.jsp#post"
-									class="hvr-underline-from-center apost">Post</a></li>
+							<c:when test="${sessionScope.username != null}">
 								<li style="width:110px"><a href="index.jsp#find"
-									class="hvr-underline-from-center aservices">Find Book</a></li>
-								<li style="width:110px"><a href="index.jsp#team"
-									class="hvr-underline-from-center ateam">Our Team</a></li>
-								<li style="width:120px"><a href="contact.jsp" class="hvr-underline-from-center"
-									target="_blank">Contact Us</a></li>
-								<li style="width:220px"><a href="personInformation.jsp"
-									class="hvr-underline-from-center " target="_blank">Personal Information</a></li>
-								<form action="LogoutServlet" name="tuichuForm"></form>
-								<li style="width:80px"><a href="#"
+									class="hvr-underline-from-center aservices"></a></li>
+									<li style="width:110px"><a href="index.jsp#find"
+									class="hvr-underline-from-center aservices"></a></li>
+									<li style="width:110px"><a href="index.jsp#find"
+									class="hvr-underline-from-center aservices"></a></li>
+								<li style="width:70px"><a href="${pageContext.request.contextPath}/home"
+									class="hvr-underline-from-center ahome">主页</a></li>
+								
+								<li style="width:110px"><a href="${pageContext.request.contextPath}/reader/cart"
+									class="hvr-underline-from-center ateam">借阅车</a></li>
+								<li style="width:220px"><a href="${pageContext.request.contextPath}/reader/personInfo"
+									class="hvr-underline-from-center " target="_blank">借阅情况</a></li>
+								<form action="logout" name="tuichuForm"></form>
+								<li style="width:80px"><a href="${pageContext.request.contextPath}/logout"
 									class="hvr-underline-from-center " data-toggle="modal"
-									data-target="#logout">Logout</a></li>
+									data-target="#logout">注销</a></li>
 							</c:when>
 						</c:choose>
 
@@ -70,16 +65,16 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="gridSystemModalLabel">LOGOUT</h4>
+						<h4 class="modal-title" id="gridSystemModalLabel">注销</h4>
 					</div>
 						<div class="modal-body">
-							<div class="container-fluid">Are you sure ?</div>
+							<div class="container-fluid">你确定要注销吗？</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-xs btn-xs btn-white"
-								data-dismiss="modal">Cancel</button>
+								data-dismiss="modal">取消</button>
 							<button type="submit" class="btn btn-xs btn-xs btn-green"
-								value="Confirm" onclick="tc()" data-toggle="modal" data-target="#hasLogout">Sure</button>
+								value="Confirm" onclick="tc()" data-toggle="modal" data-target="#hasLogout">确定</button>
 							<!-- 点击保存后数据要保存到数据库中，待实现-->
 						</div>
 				</div>
@@ -96,17 +91,16 @@
 						</button>
 					</div>
 						<div class="modal-body">
-							<div class="container-fluid">Has etired !!!</div>
+							<div class="container-fluid">已退出！</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-xs btn-xs btn-white">OK</button>
+							<button type="button" class="btn btn-xs btn-xs btn-white">好的</button>
 							<!-- 点击保存后数据要保存到数据库中，待实现-->
 						</div>
 				</div>
 			</div>
 		</div>
 </body>
-<script src="js/jquery-3.4.1.min.js"></script>
 <script>
 	function tc() {
 		$("#hasLogout").modal("show");

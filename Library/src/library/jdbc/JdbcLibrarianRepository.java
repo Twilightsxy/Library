@@ -38,13 +38,15 @@ public class JdbcLibrarianRepository implements LibrarianRepository {
 	 * @param userName
 	 * @return 存在返回true,不存在返回false
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isEsxit(String userName) {
-		if(jdbc.queryForInt("select count(*) from Librarian where lusername= '" +userName+"'")>0)
+		if (jdbc.queryForInt("select count(*) from Librarian where lusername= '" + userName + "'") > 0)
 			return true;
-		else return false;
+		else
+			return false;
 	}
-	
+
 	/**
 	 * 添加一个管理员
 	 * 
@@ -63,11 +65,11 @@ public class JdbcLibrarianRepository implements LibrarianRepository {
 	 * @param librarian
 	 */
 	@Override
-	public void updateLibrarian(Librarian librarian,String lUsername) {
-		jdbc.update("update Librarian set lUserName='" + librarian.getlUserName() + "' , lPassword=' "
+	public void updateLibrarian(Librarian librarian, String lUsername) {
+		jdbc.update("update Librarian set lUserName='" + librarian.getlUserName() + "' , lPassword='"
 				+ librarian.getlPassword() + "' , lName = '" + librarian.getlName() + "' , lSex = '"
 				+ librarian.getlSex() + "' , lemail = '" + librarian.getlEmail() + "' ,lTel= '" + librarian.getlTel()
-				+"' where lUsername='"+lUsername+"'");
+				+ "' where lUsername='" + lUsername + "'");
 	}
 
 	/**
@@ -77,7 +79,7 @@ public class JdbcLibrarianRepository implements LibrarianRepository {
 	 */
 	@Override
 	public void deleteLibrarian(String userName) {
-		jdbc.update("update Librarian set delete =true where lUserName='" + userName+"'");
+		jdbc.update("update Librarian set delete =true where lUserName='" + userName + "'");
 	}
 
 	/**
@@ -106,15 +108,18 @@ public class JdbcLibrarianRepository implements LibrarianRepository {
 	public List<Librarian> getLibrarians() {
 		return jdbc.query(SELECT_LIBRARIAN, new LibrarianRowMapper());
 	}
+
 	/**
 	 * 取得所有的管理员的数量
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public int getLibrarianCount() {
-		return (int) jdbc.queryForLong("select count(*) from Librarian");
+		return (int) jdbc.queryForLong("select count(*) from Librarian where delete = false");
 	}
+
 	/**
 	 * 依据页码和指定页面大小，返回管理员列表
 	 * 
@@ -138,14 +143,65 @@ public class JdbcLibrarianRepository implements LibrarianRepository {
 	public Librarian findByPassword(String userName, String password) {
 		Librarian librarian = null;
 		try {
-			librarian = jdbc.queryForObject(SELECT_LIBRARIAN + " where lUserName = ? and lpassword = ? and delete = false",
+			librarian = jdbc.queryForObject(
+					SELECT_LIBRARIAN + " where lUserName = ? and lpassword = ? and delete = false",
 					new LibrarianRowMapper(), userName, password);
 		} catch (Exception e) {
-			
+
 		}
 		return librarian;
 	}
-	
+
+	/**
+	 * 检查账号是否正确
+	 * 
+	 * @param username
+	 * @return boolean
+	 */
+	@Override
+	public boolean getrNo(String username) {
+		boolean test = true;
+		String lno = "";
+		if (username.length() != 8 || username.equals("")) {
+			return !test;
+		} else {
+			try {
+				lno = jdbc.queryForObject(SELECT_LIBRARIAN + " where lUserName = ? and delete = false", new LibrarianRowMapper(), username).getlUserName();
+			} catch (DataAccessException e) {
+
+			}
+		}
+		if (lno.equals("")) {
+			test = false;
+		}
+		return test;
+	}
+
+	/**
+	 * 检查密码是否正确
+	 * 
+	 * @param username
+	 * @param password
+	 * @return boolean
+	 */
+	@Override
+	public boolean get(String username, String password) {
+		Librarian librarian = new Librarian();
+		boolean test = false;
+		if (username.length() != 8 || username.equals("")) {
+			return test;
+		} else {
+			try {
+				librarian = jdbc.queryForObject(SELECT_LIBRARIAN + " where lUserName = ? and lPassword = ? and delete = false",
+						new LibrarianRowMapper(), username, password);
+			} catch (DataAccessException e) {
+
+			}
+			test = password.equals(librarian.getlPassword());
+		}
+		return test;
+	}
+
 	private static class LibrarianRowMapper implements RowMapper<Librarian> {
 		public Librarian mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return new Librarian(rs.getString("lUserName"), rs.getString("lPassword"), rs.getString("lName"),
@@ -155,8 +211,8 @@ public class JdbcLibrarianRepository implements LibrarianRepository {
 
 	private static final String INSERT_LIBRARIAN = "insert into Librarian (lUserName, lPassword, lName, lSex, lTel, lEmail, delete) values (?, ?, ?, ?, ?, ?, ?)";
 
-	private static final String SELECT_LIBRARIAN = "select lUserName, lPassword, lName, lSex, lTel, lEmail, delete from Librarian";
+	private static final String SELECT_LIBRARIAN = "select lUserName, lPassword, lName, lSex,  lEmail, lTel, delete from Librarian ";
 
-	private static final String SELECT_PAGE_LIBRARIAN = SELECT_LIBRARIAN + "  limit ? offset  ?";
+	private static final String SELECT_PAGE_LIBRARIAN = SELECT_LIBRARIAN + " where delete = false limit ? offset  ?";
 
 }

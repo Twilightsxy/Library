@@ -5,23 +5,32 @@
 <html class="no-js">
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="images/校徽.jpg" />
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/校徽.jpg" />
 <title>图书管理员 | 登录</title>
 
-<link rel="shortcut icon" href="favicon.ico">
 
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
 	rel='stylesheet' type='text/css'>
 
 <!--此处使用的是bootstrap1.min.css，（注意一）并不是bootstrap.min.css-->
-<link rel="stylesheet" href="css/bootstrap1.min.css">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/login_style2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap1.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login_style2.css">
 
 
 <!-- js文件 -->
-<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2.min.js"></script>
+<!-- jQuery -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<!-- Placeholder -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.placeholder.min.js"></script>
+	<!-- Waypoints -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 </head>
 <body class="style-3">
@@ -40,7 +49,7 @@
 				<!-- 登录表单 -->
 				<form class="fh5co-form animate-box"
 					data-animate-effect="fadeInRight" method="post"
-					onsubmit="return check()" action="LoginServlet1">
+					onsubmit="return check()" action="${pageContext.request.contextPath}/login/librarian">
 					<h2>管理员登录</h2>
 
 					<c:choose>
@@ -55,7 +64,7 @@
 							<div class="form-group">
 								<label for="password" class="sr-only">密码</label> <input
 									type="password" class="form-control" id="password" required
-									oninvalid="setCustomValidity('Please fill in this field!')"
+									oninvalid="setCustomValidity('请填写此字段')"
 									oninput="setCustomValidity('')" name="password"
 									placeholder="密码" autocomplete="off">
 							</div>
@@ -88,7 +97,7 @@
 								<label for="password" class="sr-only">密码</label> <input
 									type="password" class="form-control red " id="password"
 									required
-									oninvalid="setCustomValidity('Please fill in this field!')"
+									oninvalid="setCustomValidity('请填写此字段！')"
 									oninput="setCustomValidity('')" name="password"
 									placeholder="密码错误！" autocomplete="off">
 							</div>
@@ -119,16 +128,7 @@
 		</div>
 	</div>
 
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Placeholder -->
-	<script src="js/jquery.placeholder.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Main JS -->
-	<script src="js/main.js"></script>
+	
 
 </body>
 </html>
