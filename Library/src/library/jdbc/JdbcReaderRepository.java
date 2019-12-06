@@ -106,7 +106,7 @@ public class JdbcReaderRepository implements ReaderRepository {
 	public Reader findByPassword(String userName, String password) {
 		Reader reader = null;
 		try {
-			reader = jdbc.queryForObject(SELECT_READER + " where readername = ? and readerpassword = ?",
+			reader = jdbc.queryForObject(SELECT_READER + " where readerno = ? and readerpassword = ?",
 					new ReaderRowMapper(), userName, password);
 		} catch (Exception e) {
 

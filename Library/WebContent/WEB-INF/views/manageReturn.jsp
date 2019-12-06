@@ -36,12 +36,12 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-function huanshu() {
-	var check = alert("确定还书？");
-	if(check){
-		document.getElementById('return').submit();
+	function huanshu() {
+		var check = alert("确定还书？");
+		if (check) {
+			document.getElementById('return').submit();
+		}
 	}
-}
 </script>
 </head>
 
@@ -121,42 +121,22 @@ function huanshu() {
 												<th>书籍编号</th>
 												<th>书名</th>
 												<th>作者</th>
-												<th>价格</th>
-												<th>出版时间</th>
-												<th>出版社</th>
-												<th>简介</th>
-												<th>ISBN</th>
-												<th>目录</th>
-												<th>位置</th>
+												<th>借阅人</th>
+												<th>应还时间</th>
 												<th>状态</th>
 												<th>操作</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${books.items}" var="book">
+											<c:forEach items="${ingbooks.items}" var="book">
 												<tr>
 													<td>${book.bookNo}</td>
 													<td>${book.title}</td>
 													<td>${book.author}</td>
-													<td>${book.price}</td>
-													<td>${book.time}</td>
-													<td>${book.publish}</td>
-													<td>${book.brief}</td>
-													<td>${book.ISBN}</td>
-													<td>${book.category}</td>
-													<td>${book.location}</td>
-													<c:if test="${book.status==0}">
-														<td><button class="btn btn-outline-primary"
-																style="background-color: green;">可借</button></td>
-													</c:if>
-													<c:if test="${book.status==1}">
-														<td><button class="btn btn-outline-primary"
-																style="background-color: yellow;">待审核</button></td>
-													</c:if>
-													<c:if test="${book.status==2}">
-														<td><button class="btn btn-outline-primary"
-																style="background-color: red;">已借出</button></td>
-													</c:if>
+													<td>${book.readerNo}</td>
+													<td>${book.shouldReturnTime}</td>
+													<td><button class="btn btn-outline-primary"
+															style="background-color: red;">借出</button></td>
 													<td>
 
 														<form method="post"
@@ -172,15 +152,15 @@ function huanshu() {
 										</tbody>
 									</table>
 									<div align="center">
-										每页${books.pageSize}本书，
-										第${books.currentPageNo}/${books.totalPageCount}页,共${books.totalCount}本书
-										<c:if test="${books.previousPage}">
+										每页${ingbooks.pageSize}本书，
+										第${ingbooks.currentPageNo}/${ingbooks.totalPageCount}页,共${ingbooks.totalCount}本书
+										<c:if test="${ingbooks.previousPage}">
 											<a
-												href="<c:url value="/librarian/book?pageNo=${books.currentPageNo-1}" />">上一页</a>
+												href="<c:url value="/librarian/book?pageNo=${ingbooks.currentPageNo-1}" />">上一页</a>
 										</c:if>
-										<c:if test="${books.nextPage}">
+										<c:if test="${ingbooks.nextPage}">
 											<a
-												href="<c:url value="/librarian/book?pageNo=${books.currentPageNo+1}" />">下一页</a>
+												href="<c:url value="/librarian/book?pageNo=${ingbooks.currentPageNo+1}" />">下一页</a>
 										</c:if>
 									</div>
 								</div>

@@ -50,7 +50,6 @@ public class ManageLibrarianController {
 			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize, Model model) {
 		
 		model.addAttribute(new LibrarianForm());
-		model.addAttribute(new Librarian());
 		model.addAttribute("librarians", librarianRepository.findPage(pageNo, pageSize));
 		return "manageLibrarian";
 	}
@@ -112,12 +111,12 @@ public class ManageLibrarianController {
 			out.print("<script type='text/javascript'>alert('删除成功！');location.href='/Library/librarian/manager'</script>");
 			out.flush();
 			out.close();
-			return "redirect:/librarian/manager";
+			return "manageLibrarian";
 		} else {
 			out.print("<script type='text/javascript'>alert('删除失败，不能删除自己！');location.href='/Library/librarian/manager'</script>");
 			out.flush();
 			out.close();
-			return "redirect:/librarian/manager";
+			return "manageLibrarian";
 		}
 	}
 

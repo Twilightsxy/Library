@@ -111,7 +111,7 @@ public class ManageReaderController {
 		response.setContentType("text/html;charset=gb2312");
 		PrintWriter out = response.getWriter();
 		Reader reader = readerRepository.getReader(readerNo);
-		if (reader != null) {
+		if (reader != null && null == borrowRepository.getlenBorrows(readerNo)) {
 			readerRepository.deleteReader(readerNo);
 			out.print("<script type='text/javascript'>alert('删除成功！');location.href='/Library/librarian/reader'</script>");
 			out.flush();
@@ -178,7 +178,7 @@ public class ManageReaderController {
 		Reader reader = readerRepository.getReader(searchContent);
 		if(reader!=null) {
 			model.addAttribute("reader",reader);
-			List<Borrow> borrows =borrowRepository.getlenBorrows(searchContent);
+			List<Borrow> borrows = borrowRepository.getlenBorrows(searchContent);
 			List<Reserved> reserveds = new ArrayList<Reserved>();
 			for(Borrow borrow : borrows) {
 				Book book = bookRepository.getBook(borrow.getBookNo());

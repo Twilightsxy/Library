@@ -29,7 +29,7 @@ p {
 	<br>
 	<h1 align="center">图书查找</h1>
 	<div align="center">
-		<form action="${pageContext.request.contextPath}/bookSearch"
+		<form action="${pageContext.request.contextPath}/home/bookSearch"
 			method="post">
 			<select name="category" style="margin-bottom: 10px;">
 				<option value="15">目录</option>
@@ -68,7 +68,7 @@ p {
 				<!-- 0是在库 -->
 				<c:if test="${sessionScope.username == null}">
 					<p>
-						<a href="${pageContext.request.contextPath}/loginReader">请登录</a>
+						<a href="${pageContext.request.contextPath}/login/reader">请登录</a>
 					</p>
 				</c:if>
 				<c:if test="${sessionScope.username != null}">
@@ -76,7 +76,7 @@ p {
 						<p>状态： 在库</p>
 						<p>
 							<a
-								href="${pageContext.request.contextPath}/cart/${book.bookNo}">加入借阅车</a>
+								href="${pageContext.request.contextPath}/reader/cart/${book.bookNo}">加入借阅车</a>
 						</p>
 					</c:if>
 					<!-- 1是待审核 -->

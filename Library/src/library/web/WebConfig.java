@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-
 /**
  * webMVC配置
  * 
@@ -58,8 +57,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * 
 	 * 题外话 问： /和/* 有什么区别？ 答： /会拦截除了jsp以外的所有url，/* 会拦截所有url，包括jsp。
 	 * 例如：在webroot下面有一个test.jsp,当DispatcherServlet 配置映射/ 时，
-	 * 浏览器输入：http://localhost:8080/test.jsp 这个jsp是可以直接访问的，并且不经过DispatcherServlet
-	 * ， 而当DispatcherServlet 配置映射/* 时，这个请求就会被DispatcherServlet 拦截。
+	 * 浏览器输入：http://localhost:8080/test.jsp 这个jsp是可以直接访问的，并且不经过DispatcherServlet ，
+	 * 而当DispatcherServlet 配置映射/* 时，这个请求就会被DispatcherServlet 拦截。
 	 * 
 	 */
 	@Override
@@ -81,10 +80,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		
-		registry.addInterceptor(new UserInterceptor())
-				.addPathPatterns(new String[] { "/adminHome", "/adminHome/**","/account","/account/**","/check","/check/**","/admin","/admin/**","/reader","/reader/**"})//添加拦截
-				.excludePathPatterns("/loginLibrarian");// excludePathPatterns 排除拦截
+
+		registry.addInterceptor(new LibrarianInterceptor())
+				.addPathPatterns(new String[] { "/librarian/", "/librarian/**" })// 添加拦截
+				.excludePathPatterns("/login/librarian");// excludePathPatterns 排除拦截
+		registry.addInterceptor(new ReaderInterceptor()).addPathPatterns(new String[] { "/reader/", "/reader/**" })// 添加拦截
+				.excludePathPatterns("/login/reader");// excludePathPatterns 排除拦截
 		super.addInterceptors(registry);
 	}
 

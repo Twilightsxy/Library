@@ -30,12 +30,9 @@
 									class="hvr-underline-from-center " >登录</a></li>
 							</c:when>
 							<c:when test="${sessionScope.username != null}">
-								<li style="width:110px"><a href="index.jsp#find"
-									class="hvr-underline-from-center aservices"></a></li>
-									<li style="width:110px"><a href="index.jsp#find"
-									class="hvr-underline-from-center aservices"></a></li>
-									<li style="width:110px"><a href="index.jsp#find"
-									class="hvr-underline-from-center aservices"></a></li>
+								<li style="width:110px">欢迎您，读者${sessionScope.username}！</li>
+									
+				
 								<li style="width:70px"><a href="${pageContext.request.contextPath}/home"
 									class="hvr-underline-from-center ahome">主页</a></li>
 								

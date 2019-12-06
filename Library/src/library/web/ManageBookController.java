@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,9 @@ public class ManageBookController {
 
 	@Autowired
 	private BookRepository managerbook;
+	
+	@Autowired
+	private BorrowRepository borrowRepository;
 
 	/**
 	 * 进入书籍管理页面
@@ -119,12 +123,12 @@ public class ManageBookController {
 	 * @return
 	 * @throws IOException 
 	 */
-	@RequestMapping(value = "/delet/{bookNo}", method = GET) // 相应的请求方法
+	@RequestMapping(value = "/delete/{bookNo}", method = GET) // 相应的请求方法
 	public String addcart(@PathVariable("bookNo") int bookNo, Model model,
 			@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
 			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
-		String username = (String) session.getAttribute("username");
+		//String username = (String) session.getAttribute("username");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -252,9 +256,9 @@ public class ManageBookController {
      */
     @RequestMapping(value = "/return", method = GET)
     public String showReturnBook(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
-			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize, Model model){
+			@RequestParam(value = "pageSize", defaultValue = "10") int pageSize, Model model,HttpSession session){
     	
-    	model.addAttribute("books", managerbook.findPageLend(pageNo, pageSize));
+    	model.addAttribute("ingbooks", borrowRepository.findPage(pageNo, pageSize));
     	
     	return "manageReturn";
     }

@@ -68,7 +68,7 @@ h1 {
 <body>
 	<%@include file="navbar.jsp" %>
 	<br><br><br><br>
-	<h1>借阅中</h1>
+	<h1 align="center">借阅中</h1>
 	<c:forEach items="${ingBooks}" var="book">
 		<div class="divNew">
 			<!-- 这里多写了一个链接，传当前的bookNo作为参数 -->
@@ -85,7 +85,7 @@ h1 {
 	<br>
 	<br>
 	<br>
-	<h1>借阅历史</h1>
+	<h1 align="center">借阅历史</h1>
 	<c:forEach items="${returnBooks}" var="book">
 		<div class="divNew">
 			<!-- 这里多写了一个链接，传当前的bookNo作为参数 -->

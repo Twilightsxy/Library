@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
@@ -32,6 +33,7 @@ import library.domain.*;
  * @version v1.0
  */
 @Controller // 控制定义
+@SessionAttributes({"reader"})
 @RequestMapping("/") // 相应web路径
 public class HomeController {
 
@@ -166,6 +168,7 @@ public class HomeController {
 		if (test) {
 			model.addAttribute("username", username);
 			Reader reader = readerRepository.findByPassword(username, password);
+			System.out.println(reader);
 			session.setAttribute("reader", reader);
 			session.setAttribute("username", username);
 			Cookie usernameCookie = new Cookie("username", username);

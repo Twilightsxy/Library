@@ -194,6 +194,6 @@ public class JdbcBorrowRepository implements BorrowRepository {
 
 	private static final String SELECT_BORROW = "select bookno, title, author, readerno, borrowtime, isreturned, shouldreturntime,returntime,fine from Borrow";
 
-	private static final String SELECT_PAGE_BORROW = SELECT_BORROW + "  limit ? offset  ?";
+	private static final String SELECT_PAGE_BORROW = SELECT_BORROW + " order by bookno asc limit ? offset  ?";
 
 }
